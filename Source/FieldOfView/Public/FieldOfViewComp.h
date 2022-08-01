@@ -119,12 +119,14 @@ protected:
 
 	void CalculateData();
 
-	void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent) override;
-
 	inline FVector GetOwnerLocation() { return  GetOwner()->GetActorLocation(); };
 	inline FRotator GetOwnerRotation() { return GetOwner()->GetActorRotation(); };
 
 	FViewCastRes oldRay;
 
 	TArray<FVector> vertices;
+	
+	#if WITH_EDITOR
+	virtual void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent) override;
+	#endif
 };
